@@ -84,8 +84,8 @@ def main():
     parser.add_argument(
         "-o",
         "--output-dir",
-        help="save .yang files inside this dir (default: ./yang_models)",
-        default="yang_models",
+        help="save .yang files inside this dir (default: ./temp/yang_models)",
+        default="temp/yang_models",
     )
 
     args = parser.parse_args()
