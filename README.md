@@ -45,7 +45,7 @@ YANG is for modeling; JSONSchema is for validating. We bridge this gap using `py
 You must know the .yang file containing the root of the YANG models.
 
 ```bash
-pyang -p temp/yang_models/ \
+uv run pyang -p temp/yang_models/ \
       --plugindir utils/pyang_plugins/ \
       -f jsonschema \
       --jsonschema-no-namespaces \
@@ -62,7 +62,7 @@ Fetch the actual configuration in JSON via RESTCONF.
 
 ```bash
 curl -k -u admin:pass -H "Accept: application/yang-data+json" \
-     "https://172.16.42.123:8443/restconf/data/Cisco-IOS-XE-native:native" > temp/instance.json
+     "https://172.16.42.123:8443/restconf/data?content=config" > temp/instance.json
 ```
 
 ### 4. Integrity Verification
@@ -76,7 +76,7 @@ uv run check-jsonschema --schemafile temp/schema.json temp/instance.json
 We target **Python 3.11+** using `datamodel-codegen`. Other configuration are available, see tool's documentation.
 
 ```bash
-datamodel-codegen \
+uv run datamodel-codegen \
     --input temp/schema.json \
     --input-file-type jsonschema \
     --output-model-type pydantic_v2.BaseModel \
