@@ -1,10 +1,12 @@
-import json
 import argparse
 import importlib
+import sys
 from pathlib import Path
 
 
 def main():
+    sys.path.append(str(Path(__file__).resolve().parent.parent))
+
     parser = argparse.ArgumentParser(
         description="Verify you can load the JSON payloads returned from the NE into the specified Pydantic model"
     )
